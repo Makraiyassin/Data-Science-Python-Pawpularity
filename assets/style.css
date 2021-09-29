@@ -1,0 +1,14 @@
+body {
+    background-color: rgb(59, 65, 61);
+}
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+#slider {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
