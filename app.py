@@ -21,7 +21,7 @@ app = dash.Dash(__name__)
 page_title = html.H1("Pawpularity Project!")
 
 def image(id):
-    return html.Img(src=app.get_asset_url(f'{id}.jpg'))
+    return html.Img(src=app.get_asset_url(f'images/{id}.jpg'))
 
 def first_graph():
     data['Count']=data['Pawpularity'].value_counts()
@@ -43,7 +43,7 @@ app.layout = html.Div(
             value=0,
             marks={ i : f"{i}" for i in range(101)}
         ),
-        html.P(id="slider_display")
+        html.P(id="slider_display"),
     ]
 )
 
@@ -52,8 +52,9 @@ app.layout = html.Div(
     [Input(component_id='slider', component_property='value')]
 )
 def display_slider_value(slider_value):
-    message=f"slider value : {slider_value}"
-    return message
+    if not slider_value == 0:
+        print(data[data["Pawpularity"] == slider_value])
+    return 'OK'
 
 if __name__ == "__main__":
     app.run_server(debug = True)
