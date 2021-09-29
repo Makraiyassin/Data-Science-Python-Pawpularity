@@ -28,9 +28,10 @@ app.layout = html.Div(
         page_title,
     ]
 )
-
-# fig = px.bar(data, x='Powpularity', y='Count')
-# fig.show()
+data['Count']=data['Pawpularity'].value_counts()
+data['Popularity']=data['Pawpularity']
+fig = px.bar(data, x='Popularity', y='Count')
+fig.show()
 
 
 if __name__ == "__main__":
