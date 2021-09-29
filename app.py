@@ -7,14 +7,8 @@ from dash.dependencies import Input, Output
 from dash import html, dcc
 from plotly.tools import mpl_to_plotly
 import plotly.express as px
+from utils.data import data
 matplotlib.use("Agg")
-
-data = pd.read_csv('train.csv')
-
-# print(data[(data['Subject Focus']==1) & (data['Pawpularity'] > 50)] )
-# print(data[data["Pawpularity"] < 25])
-# print(data[data["Pawpularity"] > 75])
-# print(data['Pawpularity'].value_counts())
 
 app = dash.Dash(__name__)
 
