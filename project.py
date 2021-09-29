@@ -20,19 +20,22 @@ data = pd.read_csv('train.csv')
 app = dash.Dash(__name__)
 
 page_title = html.H1("Pawpularity Project!")
+
 def image(id):
     return html.Img(src=app.get_asset_url(f'{id}.jpg'))
+
+def first_graph():
+    data['Count']=data['Pawpularity'].value_counts()
+    data['Popularity']=data['Pawpularity']
+    fig = px.bar(data, x='Popularity', y='Count')
+    return fig.show()
 
 app.layout = html.Div(
     children=[
         page_title,
+        first_graph()
     ]
 )
-data['Count']=data['Pawpularity'].value_counts()
-data['Popularity']=data['Pawpularity']
-fig = px.bar(data, x='Popularity', y='Count')
-fig.show()
-
 
 if __name__ == "__main__":
     app.run_server(debug = True)
