@@ -1,8 +1,8 @@
 import pandas as pd
 
-data = pd.read_csv('./train.csv')
-# test = pd.read_csv('test.csv')
-# sample = pd.read_csv('sample_submission.csv')
+data = pd.read_csv('utils/train.csv')
+# test = pd.read_csv('utils/test.csv')
+# sample = pd.read_csv('utils/sample_submission.csv')
 
 populary= data[data['Pawpularity'] > 75]
 count_populary = {column:populary[column].value_counts() for column in populary.columns if not column == "Pawpularity" and not column == "Id"}
