@@ -1,15 +1,11 @@
-from math import floor
-import numpy as np
 import pandas as pd
 import matplotlib
-import matplotlib.pyplot as plt
 import dash
 from dash.dependencies import Input, Output
 from dash import html, dcc
-from plotly.tools import mpl_to_plotly
 import plotly.express as px
 from utils.data import data, df_populary, df_unpopulary
-from pie_chart import pie_chart
+from my_charts import first_graph, pie_chart
 matplotlib.use("Agg")
 
 app = dash.Dash(__name__)
@@ -18,14 +14,6 @@ page_title = html.H1("Pawpularity Project!")
 first_paragraph = html.P("This graphic groups the popularity ratings of over 9,900 animal photos.")
 second_paragraph = html.P("The slider below allows you to display the photos according to their popularity. So we can find theories to explain their score.")
 
-def first_graph():
-    data['Count']=data['Pawpularity'].value_counts()
-    data['Popularity']=data['Pawpularity']
-    pop=data['Pawpularity'].value_counts()
-    df = pd.concat([pop.index.to_series(), pop], axis=1, keys=['Popularity', 'Count'])
-    fig = px.bar(df, x='Popularity', y='Count')
-    return fig
-
 def get_image(id):
     return html.Img(src=app.get_asset_url(f'images/{id}.jpg'))
 
@@ -33,7 +21,7 @@ app.layout = html.Div(
     children=[
         page_title,
         first_paragraph,
-        dcc.Graph(figure=first_graph()),
+        dcc.Graph(figure=first_graph(data)),
         second_paragraph,
         dcc.Slider(
             id="slider", 
