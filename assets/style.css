@@ -4,11 +4,26 @@ body {
 
 h1 {
     text-align: center;
-    color: white;
+    color: rgb(221, 221, 221);
+}
+
+p {
+    text-align: center;
+    color: rgb(202, 201, 201);
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 img {
-    width: 200px;
+    max-width: 200px;
+    max-height: 300px;
+}
+
+.images {
+    display: grid;
+    gap: 10px;
+    grid-template-rows: 350px 350px;
+    grid-template-columns: repeat(6, 1fr);
 }
 
 #slider {
