@@ -10,7 +10,7 @@ def first_graph(data):
     return fig
 
 def pie_chart(df,values,names,title):
-    fig = px.pie(df, values=values, names=names, title=title)
+    fig = px.pie(df, values=values, names=names, title=title, color=title, color_discrete_map={'Yes':'cyan'})
     return fig
 
 
