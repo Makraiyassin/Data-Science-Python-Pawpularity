@@ -9,9 +9,10 @@ h1 {
 
 p {
     text-align: center;
-    color: rgb(202, 201, 201);
-    margin-top: 15px;
-    margin-bottom: 15px;
+    color: rgb(179, 179, 179);
+    font-size: 18px;
+    width: 60%;
+    margin: 20px auto;
 }
 
 img {
@@ -23,6 +24,13 @@ img {
     display: grid;
     gap: 10px;
     grid-template-rows: 350px 350px;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.pie-graph {
+    display: grid;
+    gap: 5px;
+    grid-template-rows: 300px 300px;
     grid-template-columns: repeat(6, 1fr);
 }
 

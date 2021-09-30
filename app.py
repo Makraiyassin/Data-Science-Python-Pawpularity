@@ -11,22 +11,25 @@ matplotlib.use("Agg")
 
 app = dash.Dash(__name__)
 
-page_title = html.H1("Pawpularity Project!")
-first_paragraph = html.P("This graphic groups the popularity ratings of over 9,900 animal photos.")
-second_paragraph = html.P("The slider below allows you to display the photos according to their popularity. So we can find theories to explain their score.")
 populary_chart=html.Div(
+    className="pie-graph",
     children=[dcc.Graph(figure=pie_chart(df_populary,column,df_populary["Yes/No"], column)) for column in df_populary.columns if not column == "Yes/No"]
 )
+unpopulary_chart=html.Div(
+    className="pie-graph",
+    children=[dcc.Graph(figure=pie_chart(df_unpopulary,column,df_unpopulary["Yes/No"], column)) for column in df_unpopulary.columns if not column == "Yes/No"]
+)
+
 
 def get_image(id):
     return html.Img(src=app.get_asset_url(f'images/{id}.jpg'))
 
 app.layout = html.Div(
     children=[
-        page_title,
-        first_paragraph,
+        html.H1("Pawpularity Project!"),
+        html.P("This graphic groups the popularity ratings of over 9,900 animal photos."),
         dcc.Graph(figure=first_graph(data)),
-        second_paragraph,
+        html.P("The slider below allows you to display the photos according to their popularity. So we can find theories to explain their score. 👇"),
         dcc.Slider(
             id="slider", 
             min=0, 
@@ -39,7 +42,9 @@ app.layout = html.Div(
         html.P("In the following graphs we will analyze the characteristics of popular photos and unpopular photos"),
         html.H1("Pie Charts for Most popular photos"),
         populary_chart,
-        html.H1("Pie Charts for Les popular photos"),
+        html.H1("Pie Charts for Less popular photos"),
+        unpopulary_chart,
+        html.P("When comparing the characteristics of the most popular photos with those of the less popular, there is no particular difference. The popularity of one over the other is subjective, it is difficult to make an algorithm allowing it to be calculated. We could possibly look at other characteristics, which could be more relevant such as: The brightness, the background, if the animal in the photo is an adult or a baby, ..."),
     ]
 )
 

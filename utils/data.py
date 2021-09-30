@@ -17,6 +17,7 @@ df_unpopulary = pd.DataFrame([df_unpopulary['No'].values, df_unpopulary['Yes'].v
 df_unpopulary["Yes/No"]=["No","Yes"]
 
 # print(df_populary)
+# print(df_unpopulary)
 
 # print(data[(data['Subject Focus']==1) & (data['Pawpularity'] > 50)] )
 # print(data[data["Pawpularity"] < 25])
