@@ -1,3 +1,4 @@
+import os
 from dash.html.H1 import H1
 import pandas as pd
 import matplotlib
@@ -72,4 +73,4 @@ def my_dash_app():
     return app.index()
 
 if __name__ == "__main__":
-    server.run(debug = True)
+    server.run(debug = True, port=int(os.environ.get('PORT', 5000)))
