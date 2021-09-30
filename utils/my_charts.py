@@ -9,8 +9,8 @@ def first_graph(data):
     fig = px.bar(df, x='Popularity', y='Count')
     return fig
 
-def pie_chart(df,title):
-    fig = px.pie(df, values='Yes', names='Criterion', title=title)
+def pie_chart(df,values,names,title):
+    fig = px.pie(df, values=values, names=names, title=title)
     return fig
 
 

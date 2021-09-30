@@ -1,3 +1,4 @@
+from dash.html.H1 import H1
 import pandas as pd
 import matplotlib
 import dash
@@ -5,7 +6,7 @@ from dash.dependencies import Input, Output
 from dash import html, dcc
 import plotly.express as px
 from utils.data import data, df_populary, df_unpopulary
-from my_charts import first_graph, pie_chart
+from utils.my_charts import first_graph, pie_chart
 matplotlib.use("Agg")
 
 app = dash.Dash(__name__)
@@ -13,6 +14,9 @@ app = dash.Dash(__name__)
 page_title = html.H1("Pawpularity Project!")
 first_paragraph = html.P("This graphic groups the popularity ratings of over 9,900 animal photos.")
 second_paragraph = html.P("The slider below allows you to display the photos according to their popularity. So we can find theories to explain their score.")
+populary_chart=html.Div(
+    children=[dcc.Graph(figure=pie_chart(df_populary,column,df_populary["Yes/No"], column)) for column in df_populary.columns if not column == "Yes/No"]
+)
 
 def get_image(id):
     return html.Img(src=app.get_asset_url(f'images/{id}.jpg'))
@@ -33,8 +37,9 @@ app.layout = html.Div(
         ),
         html.Div(id="slider_display"),
         html.P("In the following graphs we will analyze the characteristics of popular photos and unpopular photos"),
-        dcc.Graph(figure=pie_chart(df_populary, "most popular photos")),
-        dcc.Graph(figure=pie_chart(df_unpopulary, "less popular photos")),
+        html.H1("Pie Charts for Most popular photos"),
+        populary_chart,
+        html.H1("Pie Charts for Les popular photos"),
     ]
 )
 
