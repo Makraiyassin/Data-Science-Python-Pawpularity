@@ -7,9 +7,15 @@ from dash import html, dcc
 import plotly.express as px
 from utils.data import data, df_populary, df_unpopulary
 from utils.my_charts import first_graph, pie_chart
+from flask import Flask
 matplotlib.use("Agg")
 
-app = dash.Dash(__name__)
+server = Flask(__name__)
+app = dash.Dash(
+    __name__,
+    server=server,
+    url_base_pathname='/'
+)
 
 populary_chart=html.Div(
     className="pie-graph",
@@ -61,5 +67,9 @@ def display_slider_value(slider_value):
         )
     return 
 
+@server.route("/dash")
+def my_dash_app():
+    return app.index()
+
 if __name__ == "__main__":
-    app.run_server(debug = True)
+    server.run(debug = True)
