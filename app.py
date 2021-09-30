@@ -1,17 +1,15 @@
 import os
-from dash.html.H1 import H1
-import pandas as pd
 import matplotlib
 import dash
 from dash.dependencies import Input, Output
 from dash import html, dcc
-import plotly.express as px
 from utils.data import data, df_populary, df_unpopulary
 from utils.my_charts import first_graph, pie_chart
 from flask import Flask
 matplotlib.use("Agg")
 
 server = Flask(__name__)
+
 app = dash.Dash(
     __name__,
     server=server,
@@ -26,7 +24,6 @@ unpopulary_chart=html.Div(
     className="pie-graph",
     children=[dcc.Graph(figure=pie_chart(df_unpopulary,column,df_unpopulary["Yes/No"], column)) for column in df_unpopulary.columns if not column == "Yes/No"]
 )
-
 
 def get_image(id):
     return html.Img(src=app.get_asset_url(f'images/{id}.jpg'))
@@ -73,4 +70,4 @@ def my_dash_app():
     return app.index()
 
 if __name__ == "__main__":
-    server.run(debug = True, port=int(os.environ.get('PORT', 5000)))
+    server.run(debug = False, port=int(os.environ.get('PORT', 8080)))
