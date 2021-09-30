@@ -70,4 +70,4 @@ def my_dash_app():
     return app.index()
 
 if __name__ == "__main__":
-    server.run(debug = False, port=os.environ.get('PORT', 8080))
+    server.run(debug = False, host='0.0.0.0', port=os.environ.get('PORT', 8080))
